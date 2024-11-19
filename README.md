@@ -32,8 +32,7 @@ First you need to add the maven to your `build.gradle` repositories:
 repositories 
 {
 	mavenCentral()
-    maven { url 'https://repo.repsy.io/mvn/jiraiyah/jiconfig' }
-    maven { url 'https://repo.repsy.io/mvn/jiraiyah/jilogger' }
+    maven { url 'https://repo.repsy.io/mvn/jiraiyah/jilibs' }
 }
 ```
 
@@ -42,8 +41,8 @@ then you need to add the dependency into your dependency section in `build.gradl
 ```dependencies
 dependencies 
 {
-    modImplementation include("jiraiyah.jilogger:jilogger:${jilogger_version}")
-    modImplementation include("jiraiyah.jiconfig:jiconfig:${jiconfig_version}")
+    modImplementation include("jiraiyah.logger:jilogger:${jilogger_version}")
+    modImplementation include("jiraiyah.config:jiconfig:${jiconfig_version}")
 }
 ```
 
