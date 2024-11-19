@@ -50,7 +50,7 @@ x for sub versions of Minecraft, and for the main versions of the game it should
 Look into [MAVEN REPOSITORY](https://repo.repsy.io/mvn/jiraiyah/jiconfig/) for the proper versioning.
 
 ```gradle.properties
-jiconfig_version=x.x.x+MC_x.x.x
+jiconfig_version=x.x.x
 ```
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)](#contributors)
