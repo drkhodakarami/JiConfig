@@ -87,9 +87,9 @@ public class ConfigRequest
      *
      * @see BaseConfig
      */
-    public BaseConfig request()
+    public BaseConfig request(String modId)
     {
-        return new BaseConfig(this);
+        return new BaseConfig(modId, this);
     }
 
     /**

@@ -24,7 +24,7 @@
 
 package jiraiyah.config;
 
-import static jiraiyah.config.Reference.logN;
+import jiraiyah.logger.Logger;
 
 /**
  * The main config entry class. Your mod's config class should extend this class.
@@ -57,18 +57,18 @@ public abstract class Config
      */
     public static void load(String modID)
     {
-        Reference.ModID = modID;
+        Logger logger = new Logger(modID);
 
         provider = new ConfigProvider(ConfigKeyCasing.ALL_UPPER_CASE);
         createConfigs();
 
-        CONFIG = BaseConfig.of(modID + "_config").provider(provider).request();
+        CONFIG = BaseConfig.of(modID, "_config").provider(provider).request(modID);
 
-        logN("All " + provider.getConfigList().size() + " config entries have been set properly");
+        logger.logN("All " + provider.getConfigList().size() + " config entries have been set properly");
 
         assignConfigValues();
 
-        logN("All " + provider.getConfigList().size() + " config entries have been loaded properly");
+        logger.logN("All " + provider.getConfigList().size() + " config entries have been loaded properly");
     }
 
     /**

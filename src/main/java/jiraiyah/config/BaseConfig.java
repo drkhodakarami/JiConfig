@@ -24,6 +24,7 @@
 
 package jiraiyah.config;
 
+import jiraiyah.logger.Logger;
 import net.fabricmc.loader.api.FabricLoader;
 
 import java.io.IOException;
@@ -34,8 +35,6 @@ import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import static jiraiyah.config.Reference.*;
-
 /**
  * Simple Config System: <a href="https://github.com/magistermaks/fabric-simplelibs/blob/master/simple-config/SimpleConfig.java"> GITHUB </a>
  */
@@ -45,20 +44,22 @@ public class BaseConfig
     private final HashMap<String, String> config = new HashMap<>();
     private final ConfigRequest request;
     private boolean broken = false;
+    private static Logger LOGGER;
 
     /**
      * The constructor of the config system, loads the config file and marks the parameters if the config is broken.
      *
      * @param request The config request object
      */
-    public BaseConfig(ConfigRequest request)
+    public BaseConfig(String modid, ConfigRequest request)
     {
+        LOGGER = new Logger(modid);
         this.request = request;
         String identifier = "Config '" + request.getFilename() + "'";
 
         if (!request.getFile().exists())
         {
-            logN(identifier + " is missing, generating default one...");
+            LOGGER.logN(identifier + " is missing, generating default one...");
 
             try
             {
@@ -66,8 +67,7 @@ public class BaseConfig
             }
             catch (IOException e)
             {
-                logError(identifier + " failed to generate!");
-                LOGGER.trace(e.getMessage());
+                LOGGER.logError(identifier + " failed to generate! " + e.getMessage());
                 broken = true;
             }
         }
@@ -80,8 +80,7 @@ public class BaseConfig
             }
             catch (Exception e)
             {
-                logError(identifier + " failed to load!");
-                LOGGER.trace(e.getMessage());
+                LOGGER.logError(identifier + " failed to load! " + e.getMessage());
                 broken = true;
             }
         }
@@ -96,10 +95,11 @@ public class BaseConfig
      *
      * @return new config request object
      */
-    public static ConfigRequest of(String filename)
+    public static ConfigRequest of(String modid, String filename)
     {
+        LOGGER = new Logger(modid);
         Path path = FabricLoader.getInstance().getConfigDir();
-        return new ConfigRequest(path.resolve(filename + ".ini").toFile(), filename);
+        return new ConfigRequest(path.resolve(modid + filename + ".ini").toFile(), modid + filename);
     }
 
     /**
@@ -126,7 +126,7 @@ public class BaseConfig
         String val = get(key);
         if (val == null)
         {
-            logError("Failed to get the integer config value for " + key + " | Using default value: " + def);
+            LOGGER.logError("Failed to get the integer config value for " + key + " | Using default value: " + def);
             return def;
         }
         return val;
@@ -146,8 +146,7 @@ public class BaseConfig
         }
         catch (Exception e)
         {
-            logError("Failed to get the integer config value for " + key + " | Using default value: " + def);
-            LOGGER.trace(e.getMessage());
+            LOGGER.logError("Failed to get the integer config value for " + key + " | Using default value: " + def + ". " + e.getMessage());
             return def;
         }
     }
@@ -167,7 +166,7 @@ public class BaseConfig
             return val.equalsIgnoreCase("true");
         }
 
-        logError("Failed to get the double config value for " + key + " | Using default value: " + def);
+        LOGGER.logError("Failed to get the double config value for " + key + " | Using default value: " + def);
 
         return def;
     }
@@ -186,8 +185,7 @@ public class BaseConfig
         }
         catch (Exception e)
         {
-            logError("Failed to get the double config value for " + key + " | Using default value: " + def);
-            LOGGER.trace(e.getMessage());
+            LOGGER.logError("Failed to get the double config value for " + key + " | Using default value: " + def + ". " + e.getMessage());
             return def;
         }
     }
@@ -255,7 +253,7 @@ public class BaseConfig
      */
     public boolean delete()
     {
-        logWarning("Config '" + request.getFilename() + "' was removed from existence! Restart the game to regenerate it.");
+        LOGGER.logWarning("Config '" + request.getFilename() + "' was removed from existence! Restart the game to regenerate it.");
         return request.getFile().delete();
     }
 }

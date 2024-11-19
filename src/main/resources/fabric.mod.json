@@ -10,6 +10,8 @@
 	"license": "MIT",
 	"environment": "*",
 	"depends": {
-		"java": ">=21"
+      "fabricloader": ">=0.16.9",
+      "java": ">=21",
+      "fabric-api": "*"
 	}
 }

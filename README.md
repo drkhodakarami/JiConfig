@@ -22,6 +22,7 @@ system.
 ## ➤ Depending Your Mod
 
 This library is using repsy for maven publishing system. Follow the guideline bellow to make dependency for your mod.
+This library is depending on JiLogger Library so you should add it to your main mod too.
 
 ### ➤ Latest Version: 1.0.0
 
@@ -32,6 +33,7 @@ repositories
 {
 	mavenCentral()
     maven { url 'https://repo.repsy.io/mvn/jiraiyah/jiconfig' }
+    maven { url 'https://repo.repsy.io/mvn/jiraiyah/jilogger' }
 }
 ```
 
@@ -40,6 +42,7 @@ then you need to add the dependency into your dependency section in `build.gradl
 ```dependencies
 dependencies 
 {
+    modImplementation include("jiraiyah.jilogger:jilogger:${jilogger_version}")
     modImplementation include("jiraiyah.jiconfig:jiconfig:${jiconfig_version}")
 }
 ```
@@ -48,9 +51,11 @@ Finally, we need to add an entry inside `gradle.properties` using the version fr
 x for sub versions of Minecraft, and for the main versions of the game it should be like x.x.x-MCx.x
 
 Look into [MAVEN REPOSITORY](https://repo.repsy.io/mvn/jiraiyah/jiconfig/) for the proper versioning.
+Look into [JiLogger REPOSITORY](https://github.com/drkhodakarami/JiLogger) for the proper versioning.
 
 ```gradle.properties
 jiconfig_version=x.x.x
+jilogger_version=y.y.y
 ```
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)](#contributors)
