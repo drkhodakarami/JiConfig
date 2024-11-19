@@ -1,0 +1,15 @@
+{
+	"schemaVersion": 1,
+	"id": "jiconfig",
+	"version": "${version}",
+	"name": "JiConfig",
+	"description": "",
+	"authors": [
+		"Jiraiyah"
+	],
+	"license": "MIT",
+	"environment": "*",
+	"depends": {
+		"java": ">=21"
+	}
+}
