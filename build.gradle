@@ -12,7 +12,7 @@ base {
 
 repositories {
 	mavenCentral()
-	maven { url 'https://repo.repsy.io/mvn/jiraiyah/jilogger' }
+	maven { url 'https://repo.repsy.io/mvn/jiraiyah/jilibs' }
 }
 
 dependencies {
