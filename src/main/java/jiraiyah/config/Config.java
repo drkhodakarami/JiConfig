@@ -34,20 +34,21 @@ import jiraiyah.logger.Logger;
 @SuppressWarnings("unused")
 public abstract class Config
 {
-    protected static BaseConfig CONFIG;
+    private final String modId;
+    protected BaseConfig config;
+    protected ConfigProvider provider;
 
-    protected static ConfigProvider provider;
-
-    protected Config()
+    public Config(String modId)
     {
+        this.modId = modId;
     }
 
     /**
      * @return the current config instance.
      */
-    public static BaseConfig getConfig()
+    public BaseConfig getConfig()
     {
-        return CONFIG;
+        return this.config;
     }
 
     /**
@@ -55,18 +56,18 @@ public abstract class Config
      *
      * @param modID The mod ID of the mod to load the config for.
      */
-    public static void load(String modID)
+    public void load()
     {
-        Logger logger = new Logger(modID);
+        Logger logger = new Logger(this.modId);
 
-        provider = new ConfigProvider(ConfigKeyCasing.ALL_UPPER_CASE);
-        createConfigs();
+        this.provider = new ConfigProvider(ConfigKeyCasing.ALL_UPPER_CASE);
+        this.createConfigs();
 
-        CONFIG = BaseConfig.of(modID, "_config").provider(provider).request(modID);
+        this.config = BaseConfig.of(this.modId, "_config").provider(provider).request(this.modId);
 
         logger.logN("All " + provider.getConfigList().size() + " config entries have been set properly");
 
-        assignConfigValues();
+        this.assignConfigValues();
 
         logger.logN("All " + provider.getConfigList().size() + " config entries have been loaded properly");
     }
@@ -74,14 +75,14 @@ public abstract class Config
     /**
      * Creates the config entries for the mod.
      */
-    protected static void createConfigs()
+    protected void createConfigs()
     {
     }
 
     /**
      * Assigns the values of the config entries to their respective variables.
      */
-    protected static void assignConfigValues()
+    protected void assignConfigValues()
     {
     }
 

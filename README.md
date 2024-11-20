@@ -1,10 +1,10 @@
-<p align="center">
+-<p align="center">
 <a href="https://discord.gg/jEtwguzZ4R"><img alt="" src="https://img.shields.io/badge/Discord-Channel-blue" height="20"/></a>
 <a href="https://www.youtube.com/@YourTradeMaster"><img alt="" src="https://img.shields.io/badge/Youtube-Channel-db2e73" height="20"/></a>
-<a href=""><img alt="" src="https://img.shields.io/github/commit-activity/t/drkhodakarami/JiConfig" height="20"/></a>
-<a href=""><img alt="" src="https://img.shields.io/github/last-commit/drkhodakarami/JiConfig" height="20"/></a>
-<a href=""><img alt="" src="https://img.shields.io/github/downloads/drkhodakarami/JiConfig/total" height="20"/></a>
-<a href=""><img alt="" src="https://img.shields.io/github/license/drkhodakarami/JiConfig" height="20"/></a>
+<a href=""><img alt="" src="https://img.shields.io/github/commit-activity/t/drkhodakarami/JiReference" height="20"/></a>
+<a href=""><img alt="" src="https://img.shields.io/github/last-commit/drkhodakarami/JiReference" height="20"/></a>
+<a href=""><img alt="" src="https://img.shields.io/github/downloads/drkhodakarami/JiReference/total" height="20"/></a>
+<a href=""><img alt="" src="https://img.shields.io/github/license/drkhodakarami/JiReference" height="20"/></a>
 <a href=""><img alt="" src="https://img.shields.io/badge/Maintained-YES-31ad31" height="20"/></a>
 	</p>
 
@@ -12,10 +12,10 @@
 
 ## ➤ What is this library?
 
-This is a simple yet useful library for adding config files to your mod. These configs will not have any graphical representation inside game and the
-mod configuration section inside Minecraft game. This library provides the ini file under the config folder for your game. In other words using this
-library you will have a server side config that is persistent for every game world out there. This library does not support per world instance config
-system.
+This is a simple yet useful library for adding a server side config system to your mod. This library will not provide a config system that shows up in
+the game GUI.
+The library will provide config's .ini file in the config folder. The current library has no means to provide config system per world. Players don't
+need to install this library as a separate mod.
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)](#dependency)
 
@@ -24,7 +24,7 @@ system.
 This library is using repsy for maven publishing system. Follow the guideline bellow to make dependency for your mod.
 This library is depending on JiLogger Library so you should add it to your main mod too.
 
-### ➤ Latest Version: 1.0.0
+### ➤ Latest Version: 1.1.0
 
 First you need to add the maven to your `build.gradle` repositories:
 
@@ -49,8 +49,8 @@ dependencies
 Finally, we need to add an entry inside `gradle.properties` using the version from the maven repository. The version should look like x.x.x-MCx.x.
 x for sub versions of Minecraft, and for the main versions of the game it should be like x.x.x-MCx.x
 
-Look into [MAVEN REPOSITORY](https://repo.repsy.io/mvn/jiraiyah/jiconfig/) for the proper versioning.
-Look into [JiLogger REPOSITORY](https://github.com/drkhodakarami/JiLogger) for the proper versioning.
+Look into [MAVEN REPOSITORY](https://repo.repsy.io/mvn/jiraiyah/jilibs/jiraiyah/config/) for the proper versioning.
+Look into [JiLogger REPOSITORY](https://repo.repsy.io/mvn/jiraiyah/jilibs/jiraiyah/logger/) for the proper versioning.
 
 ```gradle.properties
 jiconfig_version=x.x.x
